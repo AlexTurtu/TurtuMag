@@ -1,37 +1,184 @@
 * {
   box-sizing: border-box;
 }
+/* Scrool Bar */
+::-webkit-scrollbar {
+  width: 1.3em;
+}
+::-webkit-scrollbar-track {
+  background: #fbd297;
+  box-shadow: inset 0 0 5px #fbd297;
+}
+::-webkit-scrollbar-thumb {
+  background: #74e1f2;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0495e8;
+}
+/* Animation */
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* Remove Anchor default formatting  */
+a {
+  text-decoration: none;
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+/* Body  */
 body {
+  width: 80%;
+  height: 100%;
   margin: 0;
   padding: 0;
   font-family: "Roboto";
+  margin: auto;
+  background: linear-gradient(to right, #70e1f5, #ffd194);
 }
+/* Main Container  */
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+/* Navbar start  */
 .navbar {
   display: flex;
-  justify-content: space-between;
-  background-color: aqua;
-  height: 50px;
-}
-.logo {
-  padding-left: 30px;
+  position: fixed;
+  justify-self: center;
   align-self: center;
+  justify-content: space-evenly;
+  background-color: #0093e9;
+  background-image: linear-gradient(72deg, #0093e9 0%, #80d0c7 100%);
+  height: 50px;
+  width: 70%;
+  margin-bottom: 100px;
+  border-radius: 0px 0px 10px 10px;
+  box-shadow: 0px 0px 20px whitesmoke;
+  z-index: 999;
 }
-.nav-menu {
+/* Logo image  */
+body > div > div > div.logo > a > img {
+  border-radius: 0px 0px 10px 10px;
+  margin-left: 50px;
+}
+
+body > div > div > div.logo > a > img:hover {
+  animation: zoomIn 2s infinite linear;
+  box-shadow: 0px 0px 20px rgb(19, 156, 228);
+}
+/* Right Navbar side with Cart and Admin  */
+.cart-admin {
   display: flex;
   align-self: center;
   padding-right: 30px;
   gap: 10px;
-}
-.nav-menu {
-  align-self: center;
+  justify-self: flex-end;
 }
 .cart,
 .admin {
   display: flex;
-  gap: 5px;
-  color: darkblue;
-  border: 1.5px solid darkblue;
-  border-radius: 10px;
+  gap: 15px;
   padding: 3px;
   cursor: pointer;
+  border-radius: 10px;
+}
+.cartIcon,
+.adminIcon {
+  color: black;
+}
+.fas {
+  margin-left: 5px;
+}
+
+.cart:hover {
+  animation: zoomIn 1s infinite;
+}
+.admin:hover {
+  animation: zoomIn 1s infinite;
+}
+.cartRedIcon {
+  display: flex;
+  position: relative;
+  height: 15px;
+  width: 15px;
+  left: 10px;
+  top: 10px;
+  border-radius: 50%;
+  background-color: red;
+  font-size: 10px;
+  font-weight: bolder;
+  align-content: center;
+  justify-content: center;
+}
+/* Navbar menu  */
+.nav-menu {
+  align-self: center;
+}
+.menuItem > a {
+  color: darkblue;
+  text-decoration: none;
+}
+.menuItem:hover {
+  transform: scale(1.2);
+  transition-duration: 1s;
+  transform-style: preserve-3d;
+  border-bottom: 1px solid white;
+}
+
+.nav-menu-drop {
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  justify-self: flex-end;
+  margin-right: 20vw;
+}
+body > div > div > div.nav-menu-drop > ul {
+  display: flex;
+  gap: 2vw;
+  text-decoration: none;
+  list-style-type: none;
+  cursor: pointer;
+  color: darkgray;
+}
+
+/* Class used to hide objects  */
+.hidden {
+  display: none;
+}
+/* Card container  */
+.cardContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-content: space-around;
+  margin-top: 200px;
+}
+/* Product Card  */
+.card {
+  margin: 2vh;
+  position: relative;
+  height: 400px;
+  width: 300px;
+  background-color: aliceblue;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px white;
+}
+.card:hover {
+  transform: scale(1.1);
+  transition-duration: 0.3s;
 }
