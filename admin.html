@@ -50,8 +50,40 @@
         </a>
         </div>
       </div>
+      <div class="adminHeader">
+       <h1>Administrator Settings</h1> 
+     
+       <button class="buttonProduct" id="addProductButton"><i class="fas fa-plus-square buttonProduct"></i>Add new product</button>
+      </div>
+      <div class="adminContainer">
+ 
+        <div class="adminCard">
+          <div  onclick="test()" class="adminImg">Picture</div>
+          <div class="adminDescriptionhead">Description</div>
+          <div class="adminPrice">Price</div>
+          <div  class="butttonProduct"></div>
+  
+        </div>
+      </div>
+      <div class="editproduct hidden">
+        <div class="editTitleBox">
+          New title <input type="text" name="" id="newProductTitle">
+        </div>
+        <div class="editDescriptionBox">
+          New description <textarea name="" id="newProductDescription" cols="30" rows="10"></textarea>
+        </div>
+        <div class="editPriceBox">
+          New Price <input type="number" name="" id="newProductPrice">
+        </div>
+        <div class="editImageBox">
+          New imege URL: <input type="url" name="" id="newProductImage">
+        </div>
+      </div>
     </div>
-    <script type="module" src="./src/app.js"></script>
-    <script type="module" src="./src/details.js"></script>
+   
+    <script type="module" src="./src/admin.js"></script>
+ 
+ 
+
   </body>
 </html>
