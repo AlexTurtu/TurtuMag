@@ -1,8 +1,1 @@
-export class Product {
-  constructor(id, name, price, details) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
-    this.details = details;
-  }
-}
+{"coord":{"lon":26.1063,"lat":44.4323},"weather":[{"id":800,"main":"Clear","description":"clear sky","icon":"01n"}],"base":"stations","main":{"temp":-2.94,"feels_like":-6.7,"temp_min":-3.99,"temp_max":-2.3,"pressure":1024,"humidity":75},"visibility":10000,"wind":{"speed":2.68,"deg":349,"gust":9.83},"clouds":{"all":0},"dt":1642969707,"sys":{"type":2,"id":2032494,"country":"RO","sunrise":1642916585,"sunset":1642950678},"timezone":7200,"id":683506,"name":"Bucharest","cod":200}
