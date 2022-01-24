@@ -283,24 +283,27 @@ body > div > div > div.nav-menu-drop > ul {
 }
 .adminImg > img {
   height: 50px;
-  border-radius: 10px;
+  border-radius: 3px;
 }
 .adminImg {
   width: 11%;
 }
 .adminImg > img:hover {
   transform: scale(5);
-  border-radius: 10px;
+  border-radius: 2px;
+  box-shadow: 10px 10px 30px black;
 }
 .adminDescription {
   margin: 2px;
-  width: 60%;
+  width: 80%;
 }
 .adminDescriptionhead {
-  width: 50%;
+  width: 38%;
 }
 .adminPrice {
   width: 15%;
+  padding-left: 5px;
+  margin: auto;
 }
 .buttonProduct {
   display: flex;
@@ -318,20 +321,33 @@ body > div > div > div.nav-menu-drop > ul {
 .editProductButton:hover {
   color: blue;
 }
+
+#addNewProduct {
+  margin: auto;
+  gap: 0px;
+}
+#addNewProduct:hover {
+  color: green;
+}
+.adminContainer {
+  padding-bottom: 100px;
+}
+.adminTitle {
+  width: 15%;
+  margin-right: 20px;
+}
+span {
+  font-size: 10px;
+}
 .editproduct {
   position: absolute;
+  position: fixed;
   top: 25%;
   left: 25%;
   width: 50%;
   height: 50%;
+  padding: 20px;
   background: whitesmoke;
-  box-shadow: 10px 10px 30px black;
+  box-shadow: 10px 15px 60px black;
   border-radius: 10px;
-}
-#addProductButton {
-  margin: auto;
-  gap: 1px;
-}
-#addProductButton:hover {
-  color: green;
 }
