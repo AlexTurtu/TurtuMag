@@ -13,6 +13,7 @@ const newProductPrice = document.getElementById("newProductPrice");
 const newProductImage = document.getElementById("newProductImage");
 const saveButton = document.getElementById("saveEdit");
 let idToDelte;
+let idToEdit;
 
 fetch("https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts")
   .then((result) => result.json())
@@ -48,24 +49,39 @@ fetch("https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts")
 
 closeEditBtn.addEventListener("click", closeEditMenu);
 addNewProduct.addEventListener("click", addNewProductFunction);
-saveButton.addEventListener("click", addProductToAPI);
 
 function showEditMenu(e) {
+  let titleToEdit =
+    e.target.previousElementSibling.previousElementSibling
+      .previousElementSibling.innerText;
+  newProductTitle.value = titleToEdit;
+  newShortDescription.value =
+    e.target.previousElementSibling.previousElementSibling.innerText;
+  newProductPrice.value = parseFloat(e.target.previousElementSibling.innerText);
+  console.log(e.target.previousElementSibling.innerText);
+  let imageLinkToEdit =
+    e.target.previousElementSibling.previousElementSibling
+      .previousElementSibling.previousElementSibling.childNodes;
+  newProductImage.value = imageLinkToEdit[0].currentSrc;
+
   editMenu.classList.remove("editAnimation");
   editMenu.classList.remove("hidden");
   editMenu.classList.add("editAnimationOpen");
   setTimeout(() => {
     editMenu.classList.remove("editAnimationOpen");
   }, 700);
-  if ((e.target.id = "addNewProduct")) {
+  if ((e.target.classList.contains = "editProductButton")) {
     document.getElementById("editCardTitle").innerHTML =
-      "Edit existing product";
+      "Edit existing product: " + titleToEdit;
+
     //add fucntions to edit product below
-    console.log(e.target);
-    console.log("edit prod");
+    console.log(e.target.parentNode.id);
+    idToEdit = e.target.parentNode.id;
+
+    saveButton.removeEventListener;
+    saveButton.addEventListener("click", editInAPI);
   }
 }
-
 function addNewProductFunction(e) {
   editMenu.classList.remove("editAnimation");
   editMenu.classList.remove("hidden");
@@ -75,15 +91,21 @@ function addNewProductFunction(e) {
   }, 700);
   if ((e.target.id = "addNewProduct")) {
     document.getElementById("editCardTitle").innerHTML = "Add new product";
-    //add function to add product below
-    console.log(e.target);
-    console.log("add prod");
+    saveButton.removeEventListener;
+    saveButton.addEventListener("click", addProductToAPI);
   }
 }
+
+//close pop-up
 function closeEditMenu() {
   editMenu.classList.add("editAnimation");
   setTimeout(() => {
     editMenu.classList.add("hidden");
+    // location.reload();
+    newProductTitle.value = "";
+    newShortDescription.value = "";
+    newProductPrice.value = "";
+    newProductImage.value = "";
   }, 700);
 }
 
@@ -92,31 +114,42 @@ function removeProduct(event) {
     event.target.parentNode.remove();
     // add function to remove data from api below
     idToDelte = event.target.parentNode.id;
-    console.log(idToDelte);
     removeFromAPI();
   }
 }
 
+// add to API
 async function addProductToAPI() {
-  var response = await fetch(
-    `https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        title: `${newProductTitle.value}`,
-        description: `${newShortDescription.value}`,
-        price: newProductPrice.value,
-        img: `${newProductImage.value}`,
-      }),
-    }
-  );
-  setTimeout(() => {
+  if (
+    newProductTitle.value !== "" &&
+    newShortDescription.value !== "" &&
+    newProductPrice.value !== "" &&
+    newProductImage.value !== ""
+  ) {
+    var response = await fetch(
+      `https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: `${newProductTitle.value}`,
+          description: `${newShortDescription.value}`,
+          price: newProductPrice.value,
+          img: `${newProductImage.value}`,
+        }),
+      }
+    );
+
     closeEditMenu();
-  }, 700);
+    setTimeout(() => {
+      location.reload();
+    }, 500);
+  } else alert("Please fill all fields!");
 }
+
+//remove from API
 async function removeFromAPI() {
   var response = await fetch(
     `https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts/${idToDelte}`,
@@ -127,4 +160,33 @@ async function removeFromAPI() {
   setTimeout(() => {
     closeEditMenu();
   }, 700);
+}
+
+async function editInAPI() {
+  if (
+    newProductTitle.value !== "" &&
+    newShortDescription.value !== "" &&
+    newProductPrice.value !== "" &&
+    newProductImage.value !== ""
+  ) {
+    var response = await fetch(
+      `https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts/${idToEdit}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: `${newProductTitle.value}`,
+          description: `${newShortDescription.value}`,
+          price: newProductPrice.value,
+          img: `${newProductImage.value}`,
+        }),
+      }
+    );
+    closeEditMenu();
+    setTimeout(() => {
+      location.reload();
+    }, 500);
+  } else alert("Please fill all fields!");
 }

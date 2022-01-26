@@ -56,5 +56,6 @@ function addToCartFunction(e) {
 function detailsFunction(e) {
   if (e.target.classList.contains("detilasCardButton")) {
     console.log(e.target);
+    window.location.href = "details.html";
   }
 }

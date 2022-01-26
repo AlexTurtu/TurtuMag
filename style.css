@@ -320,6 +320,9 @@ body > div > div > div.nav-menu-drop > ul {
   margin: auto;
   box-shadow: 0px 0px 10px whitesmoke;
 }
+.adminCard:hover {
+  background-color: rgba(0, 0, 0, 0.075);
+}
 .adminImg > img {
   height: 50px;
   border-radius: 3px;
