@@ -12,7 +12,7 @@ let addToCart;
 fetch("https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts")
   .then((result) => result.json())
   .then((data) => {
-    for (var i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
       newCard = document.createElement("div");
       newCard.id = data[i].id;
       cardContainer.appendChild(newCard);

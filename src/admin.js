@@ -12,6 +12,7 @@ const newShortDescription = document.getElementById("newShortDescription");
 const newProductPrice = document.getElementById("newProductPrice");
 const newProductImage = document.getElementById("newProductImage");
 const saveButton = document.getElementById("saveEdit");
+const newLongDescription = document.querySelector(".editLongDescriptionBox");
 let idToDelte;
 let idToEdit;
 
@@ -71,13 +72,12 @@ function showEditMenu(e) {
     editMenu.classList.remove("editAnimationOpen");
   }, 700);
   if ((e.target.classList.contains = "editProductButton")) {
-    document.getElementById("editCardTitle").innerHTML =
-      "Edit existing product: " + titleToEdit;
+    document.getElementById(
+      "editCardTitle"
+    ).innerHTML = `<b> ${titleToEdit} </b>`;
 
     //add fucntions to edit product below
-    console.log(e.target.parentNode.id);
     idToEdit = e.target.parentNode.id;
-
     saveButton.removeEventListener;
     saveButton.addEventListener("click", editInAPI);
   }
