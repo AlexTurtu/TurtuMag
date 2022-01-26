@@ -17,6 +17,29 @@
   background: #0495e8;
 }
 /* Animation */
+@keyframes closeEdit {
+  0% {
+    top: 25%;
+    left: 25%;
+    opacity: 1;
+  }
+  33% {
+    transform: scale(0.7);
+    top: 50%;
+    left: 50%;
+  }
+  66% {
+    transform: scale(0.5);
+    top: 75%;
+    left: 75%;
+  }
+  100% {
+    transform: scale(0.1);
+    top: 100%;
+    left: 100%;
+    opacity: 0.1;
+  }
+}
 @keyframes zoomIn {
   0% {
     transform: scale(1);
@@ -47,7 +70,8 @@ body {
   padding: 0;
   font-family: "Roboto";
   margin: auto;
-  background: linear-gradient(to right, #70e1f5, #ffd194);
+  /* background: linear-gradient(to right, #70e1f5, #ffd194); */
+  background: linear-gradient(to right, #d3cce3, #e9e4f0);
 }
 /* Main Container  */
 .container {
@@ -101,10 +125,6 @@ body > div > div > div.logo > a > img:hover {
 .adminIcon {
   color: black;
 }
-.fas {
-  margin-left: 5px;
-}
-
 .cart:hover {
   animation: zoomIn 1s infinite;
 }
@@ -156,11 +176,6 @@ body > div > div > div.nav-menu-drop > ul {
   color: darkgray;
 }
 
-/* Class used to hide objects  */
-.hidden {
-  display: none;
-}
-
 .storeDescription {
   margin-top: 100px;
   text-align: center;
@@ -170,17 +185,20 @@ body > div > div > div.nav-menu-drop > ul {
 }
 /* Card container  */
 .cardContainer {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   justify-content: space-evenly;
   align-content: space-around;
 }
 /* Product Card  */
 .card {
-  margin: 2vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 15px;
   position: relative;
-  height: 450px;
-  width: 300px;
+  height: 400px;
+  width: 250px;
   background-color: aliceblue;
   border-radius: 20px;
   box-shadow: 0px 0px 10px white;
@@ -205,13 +223,44 @@ body > div > div > div.nav-menu-drop > ul {
   border-radius: 20px;
   overflow: hidden;
 } */
+.shortDescription {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  text-align: center;
+  height: 80px;
+  width: 100%;
+  margin: auto;
+  padding: 0;
+
+  font-size: small;
+}
+.cardPrice {
+  position: absolute;
+  top: 10px;
+  height: 30px;
+  text-align: center;
+  padding: 3px;
+  font-size: 12px;
+  margin: 2px 0px 2px 0px;
+  background-color: rgb(123, 205, 200);
+  justify-self: flex-end;
+  border-radius: 5px 10px 10px 0px;
+}
+#productTitle {
+  font-size: 15px;
+  margin: auto;
+}
+.productDescription {
+  height: 100%;
+}
 
 .cardButtons {
   display: flex;
   justify-content: space-between;
-  padding: 10px 10px 20px 10px;
-  align-self: flex-end;
-  justify-self: flex-end;
+  align-content: center;
+  border-radius: 10px;
+  margin: 5px;
 }
 
 .btn-grad {
@@ -225,37 +274,27 @@ body > div > div > div.nav-menu-drop > ul {
 .btn-grad {
   text-align: center;
   border: none;
-  height: 30px;
+  height: 25px;
   width: 100px;
   transition: 0.5s;
   background-size: 200% auto;
   color: white;
-  box-shadow: 0 0 20px #eee;
+  box-shadow: 0 0 5px grey;
   border-radius: 10px;
   display: block;
+  font-size: 10px;
 }
 
 .btn-grad:hover {
   background-position: right center; /* change the direction of the change here */
-  color: #fff;
+  color: black;
   text-decoration: none;
+  box-shadow: 0 0 25px grey;
 }
 #detilsIcon {
   margin-right: 5px;
 }
-.shortDescription {
-  text-align: center;
-  height: 80px;
-  margin: auto;
-  font-size: small;
-}
-.cardPrice {
-  text-align: center;
-  padding: 5px;
-}
-#productTitle {
-  font-size: 20px;
-}
+
 .adminHeader {
   margin-top: 100px;
   text-align: center;
@@ -290,6 +329,7 @@ body > div > div > div.nav-menu-drop > ul {
 }
 .adminImg > img:hover {
   transform: scale(5);
+  transition-duration: 0.5s;
   border-radius: 2px;
   box-shadow: 10px 10px 30px black;
 }
@@ -340,14 +380,84 @@ span {
   font-size: 10px;
 }
 .editproduct {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px;
   position: absolute;
   position: fixed;
   top: 25%;
   left: 25%;
   width: 50%;
-  height: 50%;
   padding: 20px;
   background: whitesmoke;
   box-shadow: 10px 15px 60px black;
   border-radius: 10px;
+}
+.editAnimation {
+  animation-name: closeEdit;
+  animation-duration: 0.7s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
+.editAnimationOpen {
+  animation-direction: reverse;
+  animation-name: closeEdit;
+  animation-duration: 0.7s;
+  animation-iteration-count: 1;
+  animation-timing-function: linear;
+}
+.edit > input {
+  width: 100%;
+  border: none;
+}
+.editCardButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.editCardButtons > button {
+  background-image: linear-gradient(
+    to right,
+    #283048 0%,
+    #859398 51%,
+    #283048 100%
+  );
+}
+.editCardButtons > button {
+  padding: 5px 25px;
+  border: none;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+.editCardButtons > button:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+.fas {
+  margin-right: 5px;
+}
+.editLongDescriptionBox > textarea {
+  width: 100%;
+  border: none;
+}
+#editCardTitle {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  width: 100%;
+  font-size: x-large;
+}
+
+/* Hidden  */
+.hidden {
+  display: none;
 }

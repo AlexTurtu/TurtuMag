@@ -66,18 +66,28 @@
         </div>
       </div>
       <div class="editproduct hidden">
-        <div class="editTitleBox">
-          New title <input type="text" name="" id="newProductTitle">
+        <div id="editCardTitle"></div>
+        <!-- Edit product pop-up  -->
+        <div class="editTitleBox edit">
+          New title: <input type="text" name="" id="newProductTitle">
         </div>
-        <div class="editDescriptionBox">
-          New description <textarea name="" id="newProductDescription" cols="30" rows="10"></textarea>
+        <div class="editShortDescriptionBox edit">
+         New Short Description:  <input type="text" name="" id="newShortDescription">
         </div>
-        <div class="editPriceBox">
-          New Price <input type="number" name="" id="newProductPrice">
+        <div class="editLongDescriptionBox">
+          New Long Description: <textarea name="" id="" cols="60" rows="10"></textarea>
         </div>
-        <div class="editImageBox">
+        <div class="editPriceBox edit">
+          New Price: <input type="number" name="" id="newProductPrice">
+        </div>
+        <div class="editImageBox edit">
           New imege URL: <input type="url" name="" id="newProductImage">
         </div>
+        <div class="editCardButtons">
+          <button id ="saveEdit"><i class="fas fa-save"></i> Save</button>
+          <button id="closeEdit"><i class="fas fa-times-circle"></i>Close</button>
+        </div>
+        <!-- end of edit product  -->
       </div>
     </div>
    
