@@ -494,6 +494,35 @@ svg {
   z-index: 100;
 }
 .detailsCard {
+  display: flex;
+  flex-direction: column;
   position: relative;
   top: 200px;
+  padding: 20px;
+}
+
+.cardImgItSelf {
+  height: 700px;
+  width: auto;
+}
+.detailsTitle {
+  padding: 10px;
+  margin: auto;
+  font-size: 40px;
+}
+.deatailCardContent {
+  display: flex;
+  gap: 10px;
+}
+.longDescription {
+  margin: auto;
+  width: 90%;
+}
+.detailsCardButtons {
+  display: flex;
+  height: 20%;
+  width: 500px;
+  align-self: flex-end;
+  justify-self: flex-end;
+  gap: 30px;
 }

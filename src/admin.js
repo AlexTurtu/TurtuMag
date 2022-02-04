@@ -12,7 +12,7 @@ const newShortDescription = document.getElementById("newShortDescription");
 const newProductPrice = document.getElementById("newProductPrice");
 const newProductImage = document.getElementById("newProductImage");
 const saveButton = document.getElementById("saveEdit");
-const newLongDescription = document.querySelector(".editLongDescriptionBox");
+let newLongDescription = document.getElementById("newLongDescriptionID");
 let idToDelte;
 let idToEdit;
 
@@ -45,27 +45,31 @@ fetch("https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts")
       // add event listeners for card buttons
       editButton.addEventListener("click", showEditMenu);
       removeButon.addEventListener("click", removeProduct);
+      var newLongDescriptionToEdit = element.longDescription;
+      window.newLongDescriptionToEdit1 = newLongDescriptionToEdit;
     });
   });
 
 closeEditBtn.addEventListener("click", closeEditMenu);
 addNewProduct.addEventListener("click", addNewProductFunction);
 
-function showEditMenu(e) {
+async function showEditMenu(e) {
+  let newLongDescription = document.getElementById("newLongDescriptionID");
   let titleToEdit =
     e.target.previousElementSibling.previousElementSibling
       .previousElementSibling.innerText;
   newProductTitle.value = titleToEdit;
   newShortDescription.value =
     e.target.previousElementSibling.previousElementSibling.innerText;
+  newLongDescription.value =
+    e.target.previousElementSibling.previousElementSibling.innerText;
   newProductPrice.value = parseFloat(e.target.previousElementSibling.innerText);
-  console.log(e.target.previousElementSibling.innerText);
+
   let imageLinkToEdit =
     e.target.previousElementSibling.previousElementSibling
       .previousElementSibling.previousElementSibling.childNodes;
   newProductImage.value = imageLinkToEdit[0].currentSrc;
-
-  editMenu.classList.remove("editAnimation");
+  newLongDescription.value = editMenu.classList.remove("editAnimation");
   editMenu.classList.remove("hidden");
   editMenu.classList.add("editAnimationOpen");
   setTimeout(() => {
@@ -75,7 +79,7 @@ function showEditMenu(e) {
     document.getElementById(
       "editCardTitle"
     ).innerHTML = `<b> ${titleToEdit} </b>`;
-
+    newLongDescription.value = newLongDescriptionToEdit1;
     //add fucntions to edit product below
     idToEdit = e.target.parentNode.id;
     saveButton.removeEventListener;
@@ -138,7 +142,7 @@ async function addProductToAPI() {
           description: `${newShortDescription.value}`,
           price: newProductPrice.value,
           img: `${newProductImage.value}`,
-          longdescription: `${newLongDescription.value}`,
+          longDescription: `${newLongDescription.value}`,
         }),
       }
     );
@@ -182,7 +186,7 @@ async function editInAPI() {
           description: `${newShortDescription.value}`,
           price: newProductPrice.value,
           img: `${newProductImage.value}`,
-          longdescription: `${newLongDescription.value}`,
+          longDescription: `${newLongDescription.value}`,
         }),
       }
     );
