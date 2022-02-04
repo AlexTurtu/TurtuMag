@@ -138,6 +138,7 @@ async function addProductToAPI() {
           description: `${newShortDescription.value}`,
           price: newProductPrice.value,
           img: `${newProductImage.value}`,
+          longdescription: `${newLongDescription.value}`,
         }),
       }
     );
@@ -181,6 +182,7 @@ async function editInAPI() {
           description: `${newShortDescription.value}`,
           price: newProductPrice.value,
           img: `${newProductImage.value}`,
+          longdescription: `${newLongDescription.value}`,
         }),
       }
     );

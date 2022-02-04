@@ -31,9 +31,7 @@ fetch("https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts")
       cardButtons = document.createElement("div");
       cardButtons.classList.add("cardButtons");
       card.appendChild(cardButtons);
-      // detilasCardDiv = document.createElement("div");
-      // detilasCardDiv.classList.add("detailsBTN");
-      // cardButtons.appendChild(detilasCardDiv);
+
       detailsButton = document.createElement("button");
       detailsButton.classList.add("btn-grad");
       detailsButton.classList.add("detilasCardButton");
@@ -50,12 +48,13 @@ fetch("https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts")
   });
 function addToCartFunction(e) {
   if (e.target.classList.contains("addToCartCardButton")) {
-    console.log(e.target);
+    let addToCartID = e.target.parentNode.parentNode.parentNode.id;
+    console.log(addToCartID);
   }
 }
 function detailsFunction(e) {
   if (e.target.classList.contains("detilasCardButton")) {
-    console.log(e.target);
-    window.location.href = "details.html";
+    let detailsID = e.target.parentNode.parentNode.parentNode.id;
+    location.href = `details.html?product-id=${detailsID}`;
   }
 }
