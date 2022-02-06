@@ -1,10 +1,6 @@
 * {
   box-sizing: border-box;
 }
-html {
-  /* transform: scale(0.5); */
-}
-
 /* Animation */
 
 @keyframes closeEdit {
@@ -73,6 +69,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 /* Navbar start  */
 .navbar {
   display: flex;
@@ -128,13 +125,13 @@ body > div > div > div.logo > a > img:hover {
 .cartRedIcon {
   display: flex;
   position: relative;
-  height: 15px;
-  width: 15px;
-  left: 10px;
+  height: 18px;
+  width: 18px;
+  left: 22px;
   top: 10px;
   border-radius: 50%;
-  background-color: red;
-  font-size: 10px;
+  background-color: rgb(241, 57, 57);
+  font-size: 15px;
   font-weight: bolder;
   align-content: center;
   justify-content: center;
