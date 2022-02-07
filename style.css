@@ -2,7 +2,15 @@
   box-sizing: border-box;
 }
 /* Animation */
-
+@keyframes cartDot {
+  0% {
+  }
+  50% {
+    transform: scale(3);
+  }
+  100% {
+  }
+}
 @keyframes closeEdit {
   0% {
     top: 25%;
@@ -131,10 +139,16 @@ body > div > div > div.logo > a > img:hover {
   top: 10px;
   border-radius: 50%;
   background-color: rgb(241, 57, 57);
-  font-size: 15px;
-  font-weight: bolder;
+  font-size: 13px;
+
   align-content: center;
   justify-content: center;
+  color: white;
+}
+.redIconAnimation {
+  animation-name: cartDot;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
 }
 /* Navbar menu  */
 .nav-menu {
@@ -266,6 +280,7 @@ body > div > div > div.nav-menu-drop > ul {
     #77a1d3 100%
   );
 }
+
 .btn-grad {
   text-align: center;
   border: none;
@@ -274,7 +289,7 @@ body > div > div > div.nav-menu-drop > ul {
   transition: 0.5s;
   background-size: 200% auto;
   color: white;
-
+  cursor: pointer;
   border-radius: 10px;
   display: block;
   font-size: 10px;
@@ -490,36 +505,99 @@ svg {
   transform: rotate(180deg);
   z-index: 100;
 }
+
+/* Details  */
 .detailsCard {
-  display: flex;
-  flex-direction: column;
+  margin: auto;
   position: relative;
   top: 200px;
-  padding: 20px;
+  width: 80%;
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  box-shadow: 0px 0px 10px lightgray;
+  border-radius: 5px;
 }
 
 .cardImgItSelf {
-  height: 700px;
+  height: 400px;
   width: auto;
+}
+
+.deatailCardContent {
+  display: flex;
+  gap: 10px;
 }
 .detailsTitle {
   padding: 10px;
   margin: auto;
   font-size: 40px;
 }
-.deatailCardContent {
-  display: flex;
-  gap: 10px;
-}
 .longDescription {
   margin: auto;
-  width: 90%;
+  width: 400px;
+}
+.detailsCardPrice {
+  font-size: 20px;
 }
 .detailsCardButtons {
   display: flex;
-  height: 20%;
-  width: 500px;
-  align-self: flex-end;
-  justify-self: flex-end;
+  width: 100%;
+  align-self: flex-start;
+  justify-content: space-between;
+
   gap: 30px;
+}
+.detailsCardText {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.longDescription {
+  width: 700px;
+  height: 60%;
+}
+
+/* Cart  */
+.totalPrice {
+  position: relative;
+  top: 200px;
+}
+.cartContainer {
+  position: relative;
+  top: 220px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cartCardImg {
+  height: 90px;
+}
+.cartCard {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 800px;
+  height: 100px;
+  padding: 5px;
+  box-shadow: 0px 0px 10px darkgray;
+  width: 90%;
+  border-radius: 5px;
+}
+.cartCard:hover {
+  transform: scale(1.01);
+  transition-duration: 0.3s;
+}
+.cartCardBody {
+  display: flex;
+}
+.cartCardTitle {
+  width: 200px;
+}
+.cartImgContainer {
+  width: 150px;
+}
+.cartCardPrice {
+  width: 100px;
 }

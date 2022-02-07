@@ -18,7 +18,7 @@ window.addEventListener("load", async () => {
        <div class="detailsCardText">
          <div class="longDescription">${product.longDescription}</div>
          <div class="detailsCardPrice">Price: ${product.price}</div>
-         <div class="detailsCardQty">Quantity: ${product.quantity}
+        
        </div>
        <div class="detailsCardButtons">
          <button data-product-id=${product.id} class="addToCartCartButton btn btn-primary">Add to cart</button>

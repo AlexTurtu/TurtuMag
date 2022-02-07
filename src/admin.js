@@ -5,6 +5,7 @@ let removeButon = document.querySelector(".removeProductButton");
 const editMenu = document.querySelector(".editproduct");
 const addNewProduct = document.getElementById("addNewProduct");
 const closeEditBtn = document.getElementById("closeEdit");
+
 let newAdminCard;
 // edit or add variables
 const newProductTitle = document.getElementById("newProductTitle");
@@ -45,8 +46,9 @@ fetch("https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts")
       // add event listeners for card buttons
       editButton.addEventListener("click", showEditMenu);
       removeButon.addEventListener("click", removeProduct);
-      var newLongDescriptionToEdit = element.longDescription;
+      let newLongDescriptionToEdit = element.longDescription;
       window.newLongDescriptionToEdit1 = newLongDescriptionToEdit;
+      console.log(newLongDescriptionToEdit);
     });
   });
 
@@ -54,22 +56,25 @@ closeEditBtn.addEventListener("click", closeEditMenu);
 addNewProduct.addEventListener("click", addNewProductFunction);
 
 async function showEditMenu(e) {
-  let newLongDescription = document.getElementById("newLongDescriptionID");
+  console.log(newLongDescription);
+  console.log(newLongDescriptionToEdit1);
+
   let titleToEdit =
     e.target.previousElementSibling.previousElementSibling
       .previousElementSibling.innerText;
   newProductTitle.value = titleToEdit;
   newShortDescription.value =
     e.target.previousElementSibling.previousElementSibling.innerText;
-  newLongDescription.value =
-    e.target.previousElementSibling.previousElementSibling.innerText;
+  newLongDescription.value = newLongDescriptionToEdit1;
+  e.target.previousElementSibling.previousElementSibling.innerText;
   newProductPrice.value = parseFloat(e.target.previousElementSibling.innerText);
 
   let imageLinkToEdit =
     e.target.previousElementSibling.previousElementSibling
       .previousElementSibling.previousElementSibling.childNodes;
   newProductImage.value = imageLinkToEdit[0].currentSrc;
-  newLongDescription.value = editMenu.classList.remove("editAnimation");
+  // newLongDescription.value =
+  editMenu.classList.remove("editAnimation");
   editMenu.classList.remove("hidden");
   editMenu.classList.add("editAnimationOpen");
   setTimeout(() => {
@@ -80,7 +85,7 @@ async function showEditMenu(e) {
       "editCardTitle"
     ).innerHTML = `<b> ${titleToEdit} </b>`;
     newLongDescription.value = newLongDescriptionToEdit1;
-    //add fucntions to edit product below
+
     idToEdit = e.target.parentNode.id;
     saveButton.removeEventListener;
     saveButton.addEventListener("click", editInAPI);

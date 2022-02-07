@@ -3,7 +3,7 @@ window.addEventListener("click", () => {
 });
 window.addEventListener("load", changeRedDot);
 
-function changeRedDot() {
+export function changeRedDot() {
   let carthere = JSON.parse(localStorage.getItem("cart"));
   let redDot = document.querySelector(".cartRedIcon");
 
@@ -11,11 +11,10 @@ function changeRedDot() {
 
   for (let i = 0; i < carthere.length; i++) {
     totalInCart = totalInCart + carthere[i].quantity;
-    console.log(totalInCart);
   }
   if (totalInCart > 0) {
-    redDot.innerHTML = totalInCart;
     redDot.classList.remove("hidden");
+    redDot.innerHTML = totalInCart;
   } else if (totalInCart == 0) {
     redDot.classList.add("hidden");
   }
