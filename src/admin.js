@@ -5,7 +5,6 @@ let removeButon = document.querySelector(".removeProductButton");
 const editMenu = document.querySelector(".editproduct");
 const addNewProduct = document.getElementById("addNewProduct");
 const closeEditBtn = document.getElementById("closeEdit");
-
 let newAdminCard;
 // edit or add variables
 const newProductTitle = document.getElementById("newProductTitle");
@@ -47,8 +46,6 @@ fetch("https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts")
       editButton.addEventListener("click", showEditMenu);
       removeButon.addEventListener("click", removeProduct);
       let newLongDescriptionToEdit = element.longDescription;
-      window.newLongDescriptionToEdit1 = newLongDescriptionToEdit;
-      console.log(newLongDescriptionToEdit);
     });
   });
 
@@ -56,24 +53,19 @@ closeEditBtn.addEventListener("click", closeEditMenu);
 addNewProduct.addEventListener("click", addNewProductFunction);
 
 async function showEditMenu(e) {
-  console.log(newLongDescription);
-  console.log(newLongDescriptionToEdit1);
-
   let titleToEdit =
     e.target.previousElementSibling.previousElementSibling
       .previousElementSibling.innerText;
   newProductTitle.value = titleToEdit;
   newShortDescription.value =
     e.target.previousElementSibling.previousElementSibling.innerText;
-  newLongDescription.value = newLongDescriptionToEdit1;
   e.target.previousElementSibling.previousElementSibling.innerText;
   newProductPrice.value = parseFloat(e.target.previousElementSibling.innerText);
-
   let imageLinkToEdit =
     e.target.previousElementSibling.previousElementSibling
       .previousElementSibling.previousElementSibling.childNodes;
   newProductImage.value = imageLinkToEdit[0].currentSrc;
-  // newLongDescription.value =
+  addLongDescription(e);
   editMenu.classList.remove("editAnimation");
   editMenu.classList.remove("hidden");
   editMenu.classList.add("editAnimationOpen");
@@ -84,8 +76,6 @@ async function showEditMenu(e) {
     document.getElementById(
       "editCardTitle"
     ).innerHTML = `<b> ${titleToEdit} </b>`;
-    newLongDescription.value = newLongDescriptionToEdit1;
-
     idToEdit = e.target.parentNode.id;
     saveButton.removeEventListener;
     saveButton.addEventListener("click", editInAPI);
@@ -104,7 +94,6 @@ function addNewProductFunction(e) {
     saveButton.addEventListener("click", addProductToAPI);
   }
 }
-
 //close pop-up
 function closeEditMenu() {
   editMenu.classList.add("editAnimation");
@@ -126,7 +115,6 @@ function removeProduct(event) {
     removeFromAPI();
   }
 }
-
 // add to API
 async function addProductToAPI() {
   if (
@@ -151,14 +139,12 @@ async function addProductToAPI() {
         }),
       }
     );
-
     closeEditMenu();
     setTimeout(() => {
       location.reload();
     }, 500);
   } else alert("Please fill all fields!");
 }
-
 //remove from API
 async function removeFromAPI() {
   var response = await fetch(
@@ -171,7 +157,6 @@ async function removeFromAPI() {
     closeEditMenu();
   }, 700);
 }
-
 async function editInAPI() {
   if (
     newProductTitle.value !== "" &&
@@ -200,4 +185,14 @@ async function editInAPI() {
       location.reload();
     }, 500);
   } else alert("Please fill all fields!");
+}
+async function addLongDescription(e) {
+  let idToEdit2 = e.target.parentNode.id;
+  fetch(
+    `https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts/${idToEdit2}`
+  )
+    .then((result) => result.json())
+    .then((data) => {
+      newLongDescription.value = data.longDescription;
+    });
 }
