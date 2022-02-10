@@ -1,5 +1,7 @@
 let totalPrice = 0;
+
 window.addEventListener("load", () => {
+  document.querySelector(".sucess").classList.add("hidden");
   const cart = JSON.parse(localStorage.getItem("cart"));
 
   if (cart) {
@@ -24,7 +26,7 @@ window.addEventListener("load", () => {
 								<button id=${product.id} class="increment cartButton"> + </button>
 							</p>
       				</div>
-						<button id=${product.id} class="delete btn btn-dark">Delete <i class="fas fa-trash"></i></button>
+						<button id=${product.id} class="delete btn btn-dark"> &#128465;</button>
     			</div>`
       )
       .join("");
@@ -39,12 +41,7 @@ const bigCartContainer = document.querySelector(".cartContainer");
 function cartActions(e) {
   let cart = JSON.parse(localStorage.getItem("cart"));
 
-  // multiply price by qty
-  cart.forEach((product) => {
-    totalPrice = Number(product.price) * product.quantity;
-  });
-
-  // price
+  // Total price
   document.querySelector(".totalPrice").innerHTML =
     "Total Price: " + totalPrice.toFixed(2) + " RON";
   const productInCart = cart.find(
@@ -55,18 +52,37 @@ function cartActions(e) {
   if (e.target.classList.contains("increment")) {
     productInCart.quantity++;
     e.target.previousElementSibling.innerHTML = productInCart.quantity;
+    if (productInCart.quantity >= 1) {
+      totalPrice += Number(productInCart.price);
+      document.querySelector(".totalPrice").innerHTML =
+        "Total Price: " + totalPrice.toFixed(2) + " RON";
+    }
 
     // decrese qty
   } else if (e.target.classList.contains("decrement")) {
-    if (productInCart.quantity > 1) productInCart.quantity--;
-    e.target.nextElementSibling.innerHTML = productInCart.quantity;
+    if (productInCart.quantity > 1) {
+      productInCart.quantity--;
+      e.target.nextElementSibling.innerHTML = productInCart.quantity;
+
+      totalPrice -= Number(productInCart.price);
+      document.querySelector(".totalPrice").innerHTML =
+        "Total Price: " + totalPrice.toFixed(2) + " RON";
+    }
 
     // delete product
   } else if (e.target.classList.contains("delete")) {
+    totalPrice -= Number(productInCart.price) * productInCart.quantity;
     productInCart.quantity = 0;
     cart = cart.filter((product) => product.id != productInCart.id);
+
+    document.querySelector(".totalPrice").innerHTML =
+      "Total Price: " + totalPrice.toFixed(2) + " RON";
     e.target.parentNode.remove();
   }
   // local storage update
   localStorage.setItem("cart", JSON.stringify(cart));
 }
+document.querySelector(".finalShopping").addEventListener("click", () => {
+  let successMsg = document.querySelector(".sucess");
+  successMsg.classList.remove("hidden");
+});

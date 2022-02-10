@@ -17,12 +17,12 @@ window.addEventListener("load", async () => {
       </div>
        <div class="detailsCardText">
          <div class="longDescription">${product.longDescription}</div>
-         <div class="detailsCardPrice">Price: ${product.price}</div>
+         <div class="detailsCardPrice">Price: ${product.price} RON</div>
         
        </div>
        <div class="detailsCardButtons">
-         <button data-product-id=${product.id} class="addToCartCartButton btn btn-primary">Add to cart</button>
-         <button onclick="location.href='store.html'" class="btn btn-primary">Go back to store</button>
+         <button data-product-id=${product.id} class="addToCartCartButton btn-det btn-grad">Add to cart</button>
+         <button onclick="location.href='store.html'" class="backToStore btn btn-grad">Go back to store</button>
        </div>
    </div>
   </div>`;

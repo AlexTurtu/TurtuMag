@@ -45,7 +45,6 @@ fetch("https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts")
       // add event listeners for card buttons
       editButton.addEventListener("click", showEditMenu);
       removeButon.addEventListener("click", removeProduct);
-      let newLongDescriptionToEdit = element.longDescription;
     });
   });
 
@@ -72,6 +71,7 @@ async function showEditMenu(e) {
   setTimeout(() => {
     editMenu.classList.remove("editAnimationOpen");
   }, 700);
+
   if ((e.target.classList.contains = "editProductButton")) {
     document.getElementById(
       "editCardTitle"
@@ -82,6 +82,7 @@ async function showEditMenu(e) {
   }
 }
 function addNewProductFunction(e) {
+  newLongDescription.value = "";
   editMenu.classList.remove("editAnimation");
   editMenu.classList.remove("hidden");
   editMenu.classList.add("editAnimationOpen");
@@ -123,7 +124,7 @@ async function addProductToAPI() {
     newProductPrice.value !== "" &&
     newProductImage.value !== ""
   ) {
-    var response = await fetch(
+    await fetch(
       `https://61ed969d634f2f00170cec8b.mockapi.io/perimetruProducts`,
       {
         method: "POST",

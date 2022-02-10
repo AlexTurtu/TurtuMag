@@ -1,0 +1,56 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "roboto";
+}
+@keyframes bannerAnimation {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: -1000px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+.banner {
+  position: absolute;
+  width: 100vw;
+  top: 130px;
+  height: 200px;
+  left: 0px;
+  border-bottom: 5px solid white;
+  opacity: 0.9;
+  overflow: hidden;
+}
+.banner > img {
+  height: 200px;
+  width: 3000px;
+  position: relative;
+  height: 100%;
+  animation: bannerAnimation 30s infinite;
+}
+.indexContent {
+  display: flex;
+  flex-direction: column;
+  margin-top: 400px;
+  z-index: 1;
+}
+.indexContent > h1 {
+  align-self: center;
+  margin-bottom: 18px;
+  border-bottom: 5px solid white;
+}
+.indexContent > p {
+  margin: 10px;
+  font-size: 20px;
+  color: rgb(105, 97, 97);
+}
+.indexContent > ul {
+  align-self: center;
+}
+.indexContent > ul > li {
+  margin: 10px;
+}
